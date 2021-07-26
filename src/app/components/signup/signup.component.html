@@ -1,28 +1,65 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid mw-10 flex-row align-right">
+      <a href="#" routerLink="/" class="navbar-brand float-right " role="button">Stock Charting Application</a>
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse" data-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#" routerLink="/login" class="nav-link">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/signup" class="nav-link">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/login" class="nav-link">profile</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-5">
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+</header>
 <div id="outerbox" class="container-fluid mt-0 my-5">
-  <div class="card card-body" >
-    <form #signupForm ="ngForm" (ngSubmit)="onSubmit(signupForm.value)">
+  <div class="card card-body">
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.value)">
       <div class="form-group ">
         <label for="userName">UserName</label>
-        <input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter UserName" name="userName" required ngModel >
+        <input type="text" class="form-control" id="userName" aria-describedby="userNameHelp"
+               placeholder="Enter UserName" name="userName" required ngModel>
         <small id="userNameHelp" class="form-text text-muted">minimum length of userName is 5 characters</small>
       </div>
       <div class="form-group ">
         <label for="emailId">Email address</label>
-        <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp" placeholder="Enter email" ng-required="true" name="emailId"ngModel>
+        <input type="email" class="form-control" id="emailId" aria-describedby="emailHelp" placeholder="Enter email"
+               ng-required="true" name="emailId" ngModel>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group ">
         <label for="mobile">Mobile Number</label>
-        <input  type="tel" class="form-control" id="mobile" aria-describedby="mobileHelp" placeholder="Enter mobile number" ng-required="true" name="mobile" ngModel>
+        <input type="tel" class="form-control" id="mobile" aria-describedby="mobileHelp"
+               placeholder="Enter mobile number" ng-required="true" name="mobile" ngModel>
         <small id="mobileHelp" class="form-text text-muted">We'll never share your mobile with anyone else.</small>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" ng-required="true"name="password"ngModel >
+        <input type="password" class="form-control" id="password" placeholder="Password" ng-required="true"
+               name="password" ngModel>
       </div>
       <div class="form-group">
         <label for="confirmpassword">Password</label>
-        <input type="password" class="form-control" id="confirmpassword" placeholder="Re-type Password" ng-required="true"name="confirmpassword"ngModel >
+        <input type="password" class="form-control" id="confirmpassword" placeholder="Re-type Password"
+               ng-required="true" name="confirmpassword" ngModel>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

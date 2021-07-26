@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UserdashboardComponent } from './components/userdashboard/userdashboard.component';
+import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserdashboardComponent,
+    AdmindashboardComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule, FormsModule
