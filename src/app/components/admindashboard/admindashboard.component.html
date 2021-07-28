@@ -1,1 +1,188 @@
-<p>admindashboard works!</p>
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid mw-10 flex-row align-right">
+      <a class="navbar-brand float-right text-white" (click)="flag=0">Welcome Admin</a>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=1">Add Companies</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=2">Add StockExchange</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=6">Add Sectors</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=3">Companies</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=4">Stock Exchanges</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="flag=5">Sectors</button>
+          </li>&emsp;
+          <li class="nav-item">
+            <button class="btn btn-danger" routerLink="/login">Logout</button>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-5">
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div  class="container my-5 outerbox" *ngIf="flag==1">
+  <div class="card card-body">
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmitCompany()">
+      <div class="form-group">
+        <label for="code">Company Code</label>
+        <input placeholder="Company code" id="code" class="form-control" type="number" formControlName="code">
+      </div>
+      <div class="form-group">
+        <label for="name">Company Name</label>
+        <input placeholder="Company Name" class="form-control" id="name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="ceo">CEO</label>
+        <input placeholder="CEO" class="form-control" id="ceo" formControlName="ceo">
+      </div>
+
+      <div class="form-group">
+        <label for="turnover">Turn Over</label>
+        <input placeholder="Turn Over" type="number" id="turnover" class="form-control" formControlName="turnover">
+      </div>
+      <div class="form-group">
+        <label for="sector">Sector</label>
+        <select formControlName="sectorId" id="sector" class="form-control">
+          <option value="None">Select</option>
+          <option *ngFor="let sector of sectorList" value="{{sector.id}}">{{sector.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="brief">Brief</label>
+        <input placeholder="Brief" id="brief" class="form-control" formControlName="brief">
+      </div>
+      <button class="btn btn-succes" type="submit">
+        Save
+      </button>
+    </form>
+  </div>
+
+</div>
+<div  class="container my-5 outerbox" *ngIf="flag==2">
+    <div class="card card-body">
+      <form [formGroup]="exchangeForm" (ngSubmit)="onSubmitExchange()">
+        <div class="form-group">
+          <label for="exname">Exchange Name</label>
+          <input placeholder="Exchange Name" class="form-control" id="exname" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="street">street</label>
+          <input placeholder="street" class="form-control" id="street" formControlName="street">
+        </div>
+        <div class="form-group">
+          <label for="state">state</label>
+          <input placeholder="state" class="form-control" id="state" formControlName="state">
+        </div>
+        <div class="form-group">
+          <label for="country">country</label>
+          <input placeholder="country" class="form-control" id="country" formControlName="country">
+        </div>
+        <div class="form-group">
+          <label for="exbrief">Brief</label>
+          <input placeholder="Brief" id="exbrief" class="form-control" formControlName="brief">
+        </div>
+        <div class="form-group">
+          <label for="remarks">remarks</label>
+          <input placeholder="remarks" id="remarks" class="form-control" formControlName="remarks">
+        </div>
+        <button class="btn btn-succes" type="submit">
+          Save
+        </button>
+      </form>
+    </div>
+
+</div>
+<div class="container my-5 outertable" *ngIf="flag==3">
+  <div class="card card-body">
+    <table class="table">
+      <tr>
+        <th>Id - Code</th>
+        <th>Name</th>
+        <th>Turn Over</th>
+        <th>CEO</th>
+        <th>Sector</th>
+        <th>Brief</th>
+      </tr>
+      <tr *ngFor="let company of companyList">
+        <td>{{company.id + " - " + company.code}}</td>
+        <td>{{company.name}}</td>
+        <td>{{company.turnover}}</td>
+        <td>{{company.ceo}}</td>
+        <td>{{company.sector.name}}</td>
+        <td>{{company.brief}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<div class="container my-5 outertable" *ngIf="flag==4">
+  <div class="card card-body">
+    <table class="table">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Brief</th>
+        <th>Remarks</th>
+      </tr>
+      <tr *ngFor="let stockExchange of stockExchangeList">
+        <td>{{stockExchange.id}}</td>
+        <td>{{stockExchange.name}}</td>
+        <td>{{stockExchange.street + "," + stockExchange.state + "," + stockExchange.country}}</td>
+        <td>{{stockExchange.brief}}</td>
+        <td>{{stockExchange.remarks}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<div class="container my-5 outertable" *ngIf="flag==5">
+  <div class="card card-body">
+    <table class="table">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Brief</th>
+      </tr>
+      <tr *ngFor="let sector of sectorList">
+        <td>{{sector.id}}</td>
+        <td>{{sector.name}}</td>
+        <td>{{sector.brief}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<div class="container my-5 outerbox" *ngIf="flag==6">
+  <div class="card card-body">
+    <form [formGroup]="sectorForm" (ngSubmit)="onSubmitSector()">
+      <div class="form-group">
+        <label for="sname">Sector Name</label>
+        <input placeholder="Sector Name" class="form-control" id="sname" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="sbrief">Brief</label>
+        <input placeholder="Brief" id="sbrief" class="form-control" formControlName="brief">
+      </div>
+      <button class="btn btn-succes" type="submit">
+        Save
+      </button>
+    </form>
+  </div>
+
+</div>
+
+
