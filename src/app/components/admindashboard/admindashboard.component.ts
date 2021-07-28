@@ -35,6 +35,33 @@ export interface Company{
 })
 export class AdmindashboardComponent implements OnInit {
 
+  companyForm = this.formBuilder.group({
+    name: '',
+    code: '',
+    ceo:'',
+    turnover: 0,
+    sectorId: null,
+    brief: ''
+  });
+  sectorForm = this.formBuilder.group({
+    name: '',
+    brief: ''
+  });
+  exchangeForm = this.formBuilder.group({
+    name: '',
+    street: '',
+    state:'',
+    country: '',
+    remarks: '',
+    brief: ''
+  });
+
+  sectorList:Sector[] = [];
+  stockExchangeList : StockExchange[] = [];
+  companyList : Company[] = [];
+
+  flag:number = 0;
+
   constructor(private httpClient:HttpClient,
               private formBuilder:FormBuilder) {
   }
@@ -55,4 +82,33 @@ export class AdmindashboardComponent implements OnInit {
       })
   }
 
+  onSubmitCompany(): void {
+    this.httpClient.post("http://localhost:8080/admin/addcompany",this.companyForm.value)
+      .subscribe(response => {
+        let res:any = response;
+        if(res.hasOwnProperty("id")) {
+          this.companyList.push(res)
+        }
+      });
+    this.companyForm.reset();}
+  onSubmitSector(): void {
+    this.httpClient.post("http://localhost:8080/admin/addsector",this.sectorForm.value)
+      .subscribe(response => {
+        let res:any = response;
+        if(res.hasOwnProperty("id")) {
+          this.sectorList.push(res)
+        }
+      });
+    this.sectorForm.reset();
+  }
+  onSubmitExchange(): void {
+    this.httpClient.post("http://localhost:8080/admin/addexchange",this.exchangeForm.value)
+      .subscribe(response => {
+        let res:any = response;
+        if(res.hasOwnProperty("id")) {
+          this.stockExchangeList.push(res)
+        }
+      });
+    this.exchangeForm.reset();
+  }
 }
